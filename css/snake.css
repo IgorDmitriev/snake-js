@@ -1,7 +1,11 @@
+figure {
+  width: 250px;
+  margin: 0 auto;
+}
 ul {
   margin: 0;
   float: left;
-  width: 510px;
+  width: 240px;
   list-style-type: none;
 }
 
