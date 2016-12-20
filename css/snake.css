@@ -1,0 +1,24 @@
+ul {
+  margin: 0;
+  float: left;
+  width: 510px;
+  list-style-type: none;
+}
+
+li {
+  float: left;
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgba(0,0,0,0.1);
+  background-color: white;
+}
+
+li.snake {
+  background-color: green;
+}
+
+li.apple {
+  background-color: red;
+  border-radius: 10px;
+
+}
