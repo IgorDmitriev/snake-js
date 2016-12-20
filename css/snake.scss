@@ -9,6 +9,13 @@ figure {
   display: block;
   margin: 0 auto;
 }
+
+figure::after {
+  content: "";
+  display: block;
+  clear:both;
+}
+
 ul {
   margin: 0;
   /*display: block;*/
@@ -31,9 +38,19 @@ li.snake {
 
 li.apple {
   background-color: red;
-  border-radius: 10px;
+  border-radius: 5px;
+  animation: roll 1s infinite;
+  transform: rotate(25deg);
 }
 
+@keyframes roll {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .head-W {
   background-color: green;
   border-top-left-radius: 10px;

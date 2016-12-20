@@ -71,13 +71,14 @@
 	    this.snake = this.board.snake;
 	    this.$el = renderEl;
 	    $(window).keydown((key) => {
-	      this.snake.turn(this.dirs[key.keyCode]);
+	      const dir = this.dirs[key.keyCode];
+	      if (dir) this.snake.turn(dir);
 	      console.log(this.snake.direction);
 	    });
 	    const snakeMove = window.setInterval(this.snake.move.bind(this.snake), 200);
-	    // const appleInterval = window.setInterval(this.board.applePosition.bind(this.board), 1000);
 	    const renderInterval = window.setInterval(this.render.bind(this, this.$el), 200);
 	    this.board.applePosition();
+	    
 	    const checkInterval = window.setInterval(() => {
 	      if (this.snake.gameOver) {
 	        clearInterval(snakeMove);
