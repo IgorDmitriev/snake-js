@@ -30,6 +30,7 @@ class Snake {
         headPos[1] === this.board.applePos[1]) {
       this.length += 2;
       this.board.applePos = null;
+      this.board.applePosition();
     }
     // console.log(this.renderPositions());
   }

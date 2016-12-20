@@ -1,11 +1,19 @@
+body, figure, ul, li {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
 figure {
-  width: 250px;
+  width: 220px;
+  display: block;
   margin: 0 auto;
 }
 ul {
   margin: 0;
+  /*display: block;*/
   float: left;
-  width: 240px;
+  /*width: 240px;*/
   list-style-type: none;
 }
 
@@ -24,5 +32,28 @@ li.snake {
 li.apple {
   background-color: red;
   border-radius: 10px;
+}
 
+.head-W {
+  background-color: green;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.head-S {
+  background-color: green;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.head-E {
+  background-color: green;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.head-N {
+  background-color: green;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }

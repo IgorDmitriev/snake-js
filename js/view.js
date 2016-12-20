@@ -17,14 +17,15 @@ class View {
       console.log(this.snake.direction);
     });
     const snakeMove = window.setInterval(this.snake.move.bind(this.snake), 200);
-    const appleInterval = window.setInterval(this.board.applePosition.bind(this.board), 200);
+    // const appleInterval = window.setInterval(this.board.applePosition.bind(this.board), 1000);
     const renderInterval = window.setInterval(this.render.bind(this, this.$el), 200);
-    // this.board.applePosition();
+    this.board.applePosition();
     const checkInterval = window.setInterval(() => {
       if (this.snake.gameOver) {
         clearInterval(snakeMove);
         clearInterval(renderInterval);
-        clearInterval(appleInterval);
+        clearInterval(checkInterval);
+        this.$el.prepend('<h1>Game Over</h1>');
       }
     }, 500);
   }
@@ -41,8 +42,11 @@ class View {
       }
       $el.append($ul);
     }
+    const snakePositions = this.snake.renderPositions();
+    const [headRow, headCol] = snakePositions[0];
+    $($($('ul')[headRow].childNodes)[headCol]).addClass(`head-${this.snake.direction}`);
 
-    this.snake.renderPositions().forEach(pos => {
+    snakePositions.slice(1).forEach(pos => {
       const [row, col] = pos;
       $($($('ul')[row].childNodes)[col]).addClass('snake');
     });

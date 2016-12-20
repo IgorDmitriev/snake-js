@@ -22,8 +22,9 @@ class Board {
     console.log(this.snake.renderPositions());
     if (this.applePos) return;
 
-    let pos = [Math.round(Math.random()*this.size),
-               Math.round(Math.random()*this.size)];
+    const pos = [Math.round(Math.random()*(this.size - 1)),
+               Math.round(Math.random()*(this.size - 1))];
+    console.log(pos);
     if (this.snake.renderPositions().some(snakePos => {
       return (snakePos[0] === pos[0]) && (snakePos[1] === pos[1]);
       })) {
