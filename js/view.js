@@ -1,4 +1,5 @@
 const Board = require('./board.js');
+const Hammer = require('./hammer.min.js');
 
 class View {
   constructor(renderEl) {
@@ -9,9 +10,28 @@ class View {
       "40": "S"
     };
 
+    this.swipes = {
+      "2": "W",
+      "4": "E",
+      "8": "N",
+      "16": "S"
+    };
+
     this.board = new Board(10);
     this.snake = this.board.snake;
     this.$el = renderEl;
+
+    const hammertime = new Hammer($(window)[0]);
+    hammertime.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
+
+    // mobile swipes
+    hammertime.on('swipe', (ev) => {
+      console.log(ev.direction);
+      const dir = this.swipes[ev.direction];
+      if (dir) this.snake.turn(dir);
+    });
+
+    // keyboard arrows
     $(window).keydown((key) => {
       const dir = this.dirs[key.keyCode];
       if (dir) this.snake.turn(dir);
@@ -20,7 +40,7 @@ class View {
     const snakeMove = window.setInterval(this.snake.move.bind(this.snake), 200);
     const renderInterval = window.setInterval(this.render.bind(this, this.$el), 200);
     this.board.applePosition();
-    
+
     const checkInterval = window.setInterval(() => {
       if (this.snake.gameOver) {
         clearInterval(snakeMove);
@@ -56,6 +76,7 @@ class View {
       const [row_a, col_a] = this.board.applePos;
       $($($('ul')[row_a].childNodes)[col_a]).addClass('apple');
     }
+
   }
 
 
